@@ -1,0 +1,101 @@
+@import '@fontsource-variable/space-grotesk';
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #000000;
+  --color-line: #262626;
+  --color-line-strong: #3f3f3f;
+  --color-muted: #a1a1a1;
+  --color-faint: #6b6b6b;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background: #000;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .premium-button {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .premium-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(255, 255, 255, 0.08);
+  }
+
+  .premium-card,
+  .team-card {
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 350ms ease, background-color 350ms ease;
+  }
+
+  .premium-card:hover,
+  .team-card:hover {
+    transform: translateY(-6px);
+    background-color: #0a0a0a;
+    border-color: #3f3f3f;
+  }
+
+  .premium-card svg,
+  .team-card svg {
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms ease;
+  }
+
+  .premium-card:hover svg,
+  .team-card:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .footer-link {
+    position: relative;
+  }
+
+  .footer-link::after {
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    content: '';
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

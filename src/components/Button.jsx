@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const base =
   'premium-button group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-all duration-300 focus-visible:outline-offset-4'
@@ -10,8 +11,10 @@ const variants = {
 
 export default function Button({ href, variant = 'solid', external = false, icon = false, children, className = '', ...rest }) {
   const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+  const Component = !external && href.startsWith('/') ? Link : 'a'
+  const destination = Component === Link ? { to: href } : { href }
   return (
-    <a href={href} className={`${base} ${variants[variant]} ${className}`} {...externalProps} {...rest}>
+    <Component {...destination} className={`${base} ${variants[variant]} ${className}`} {...externalProps} {...rest}>
       {children}
       {icon && (
         <ArrowUpRight
@@ -20,6 +23,6 @@ export default function Button({ href, variant = 'solid', external = false, icon
           aria-hidden="true"
         />
       )}
-    </a>
+    </Component>
   )
 }

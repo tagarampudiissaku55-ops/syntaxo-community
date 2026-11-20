@@ -4,7 +4,7 @@ import Reveal from './Reveal'
 
 export default function JoinCTA() {
   return (
-    <section id="contact" className="border-t border-line py-24 sm:py-36">
+    <section className="border-t border-line py-24 sm:py-36">
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal>
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-faint">Join Our Community</p>
@@ -18,16 +18,7 @@ export default function JoinCTA() {
             <Button href={LINKS.join} external icon className="!px-9 !py-4 uppercase tracking-[0.15em]">
               Join SYNTAXO
             </Button>
-            <Button href={LINKS.contactEmail} variant="outline" icon className="!px-9 !py-4 uppercase tracking-[0.15em]">
-              Mail Us
-            </Button>
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-            For queries, event collaborations, community partnerships or any support, contact us at{' '}
-            <a className="footer-link text-white underline underline-offset-4" href={LINKS.contactEmail}>
-              syntaxocommunity@gmail.com
-            </a>
-          </p>
         </Reveal>
       </div>
     </section>

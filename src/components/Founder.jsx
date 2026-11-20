@@ -1,46 +1,7 @@
 import { ArrowUpRight, GitBranch, Globe2, Handshake, Lightbulb, Mail, Network } from 'lucide-react'
-import { COORDINATORS, LINKS, MEDICAL_TEAM, SITE, TEAM } from '../config'
+import { Link } from 'react-router-dom'
+import { LINKS, SITE } from '../config'
 import Reveal from './Reveal'
-
-function initials(name) {
-  return name.split(' ').map((part) => part[0]).filter(Boolean).slice(0, 2).join('').toUpperCase()
-}
-
-function MemberCard({ member, delay = 0 }) {
-  const Card = member.linkedin ? 'a' : 'div'
-  const linkProps = member.linkedin
-    ? { href: member.linkedin, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${member.name} on LinkedIn` }
-    : {}
-
-  return (
-    <Reveal delay={delay} className="h-full">
-      <Card {...linkProps} className="team-card group relative flex min-h-48 h-full flex-col justify-between overflow-hidden rounded-lg border border-white/[0.08] bg-[#141414] p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-400/30">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-        <div className="flex items-start justify-between gap-4">
-          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border border-violet-400/30 bg-gradient-to-br from-violet-500/20 to-blue-500/10 text-base font-medium text-white transition-all duration-300 group-hover:scale-105 group-hover:border-violet-400/60">
-            <span aria-hidden="true">{initials(member.name)}</span>
-            {member.image && (
-              <img
-                src={member.image}
-                alt={`${member.name}, ${member.role}`}
-                loading="lazy"
-                decoding="async"
-                style={{ objectPosition: member.imagePosition || 'center' }}
-                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                onError={(event) => { event.currentTarget.style.display = 'none' }}
-              />
-            )}
-          </div>
-          {member.linkedin && <Globe2 size={18} strokeWidth={1.6} className="mt-1 text-zinc-500 transition-colors group-hover:text-violet-300" aria-hidden="true" />}
-        </div>
-        <div className="mt-8">
-          <h4 className="text-base font-medium leading-snug text-white">{member.name}</h4>
-          <p className="mt-2 text-[11px] uppercase tracking-[0.16em] text-zinc-500">{member.role}</p>
-        </div>
-      </Card>
-    </Reveal>
-  )
-}
 
 function PhilosophyCard({ icon: Icon, title, description }) {
   return (
@@ -115,7 +76,7 @@ export default function Founder() {
           </div>
 
           <div className="relative mt-12 border-t border-white/[0.08] pt-9">
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">The Syntaxo Philosophy</p>
+            <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">Community Values · The Syntaxo Philosophy</p>
             <div className="mt-7 grid gap-4 md:grid-cols-3">
               <PhilosophyCard icon={Network} title="Connect" description="Bringing ambitious minds together and building meaningful relationships." />
               <PhilosophyCard icon={Handshake} title="Collaborate" description="Encouraging teamwork, knowledge sharing and community-driven innovation." />
@@ -131,40 +92,9 @@ export default function Founder() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="#community" className="premium-button inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Explore SYNTAXO Community</a>
+              <Link to="/team" className="premium-button inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Meet Our Team</Link>
               <a href={LINKS.founderEmail} className="premium-button inline-flex items-center justify-center rounded-full border border-white/[0.16] px-5 py-3 text-sm font-medium text-white hover:border-violet-400/50">Connect With Founder</a>
             </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.2} className="mt-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-500">Our People</p>
-          <h2 className="mt-5 text-3xl font-medium tracking-tight sm:text-5xl">Meet Our Community</h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Behind every great community is a team of passionate people working together to create opportunities, inspire innovation and build meaningful connections.
-          </p>
-          <h3 className="mt-14 text-xl font-medium tracking-tight">Community Leadership</h3>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {TEAM.map((member, index) => (
-              <MemberCard key={member.name} member={member} delay={(index % 3) * 0.06} />
-            ))}
-          </div>
-          <div className="mt-12">
-            <h3 className="text-xl font-medium tracking-tight">Medical Team</h3>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {MEDICAL_TEAM.map((member, index) => (
-                <MemberCard key={member.name} member={member} delay={(index % 3) * 0.05} />
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.3} className="mt-16">
-          <h3 className="text-xl font-medium tracking-tight">Community Coordinators</h3>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {COORDINATORS.map((member, index) => (
-              <MemberCard key={member.name} member={member} delay={(index % 3) * 0.05} />
-            ))}
           </div>
         </Reveal>
       </div>

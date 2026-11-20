@@ -166,14 +166,45 @@ export const MEDICAL_TEAM = [
   {
     name: 'Pedapudi Meenakshi',
     role: 'Medical Team',
-    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795171809/WhatsApp_Image_2026-11-20_at_4.19.25_PM_gsz5zd.jpg',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795176695/WhatsApp_Image_2026-11-20_at_5.06.44_PM_la5uei.jpg',
+  },
+  {
+    name: 'Korada Meghana',
+    role: 'Medical Team',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795179212/WhatsApp_Image_2026-11-20_at_4.45.25_PM_hj5fvn.jpg',
+  },
+]
+
+export const COMMUNITY_EVENTS = [
+  {
+    name: 'UTSAVAM 2026',
+    poster: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795179563/SYNTAXO_COMMUNITY_ywulbb.png',
+    posterAlt: 'SYNTAXO COMMUNITY at Utsavam 2026',
+    partnership: 'ONE OF THE OFFICIAL COMMUNITY PARTNERS',
+    community: 'SYNTAXO COMMUNITY',
+    organizer: 'React Hyderabad',
+    attendees: '400+',
+    achievement: "SYNTAXO's First Community Partnership Event.",
+    highlights: [
+      { value: '400+', label: 'Event Attendees' },
+      { value: '01', label: 'First Community Partnership' },
+      { value: '2026', label: 'Our Community Journey' },
+    ],
+    description: [
+      'We are excited to share a special milestone in our journey!',
+      'SYNTAXO COMMUNITY is proud to be one of the Official Community Partners for Utsavam 2026.',
+      'With 400+ attendees, amazing tech influencers, and an incredible technology community, Utsavam 2026 was an unforgettable experience.',
+      'A big shoutout to React Hyderabad for making this event amazing and bringing together an incredible community of technology enthusiasts.',
+      'This is just the beginning of our journey. We look forward to creating more opportunities, meaningful collaborations, and unforgettable experiences.',
+    ],
   },
 ]
 
 export const NAV_ITEMS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Initiatives', href: '#initiatives' },
-  { label: 'Community', href: '#community' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'What We Do', path: '/what-we-do' },
+  { label: 'Events', path: '/events' },
+  { label: 'Our Team', path: '/team' },
+  { label: 'Contact', path: '/contact' },
 ]

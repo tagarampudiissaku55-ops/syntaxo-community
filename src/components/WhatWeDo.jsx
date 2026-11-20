@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { ArrowUpRight, CalendarDays, Code2, Mic, Rocket, Users, Wrench } from 'lucide-react'
+import { ArrowUpRight, CalendarDays, Code2, Handshake, Lightbulb, Mic, Rocket, Users, Wrench } from 'lucide-react'
 import InitiativeModal from './InitiativeModal'
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
@@ -29,7 +29,7 @@ const ITEMS = [
   },
   {
     icon: Wrench,
-    title: 'Workshops',
+    title: 'Technology Workshops',
     text: 'Learn practical skills.',
     description: 'Interactive learning sessions designed to help students gain practical knowledge and develop technical skills.',
     activities: ['Hands-on coding workshops.', 'Generative AI workshops.', 'Git and GitHub sessions.', 'Web development workshops.', 'Prompt engineering sessions.', 'Robotics and automation workshops.', 'Career development sessions.'],
@@ -40,7 +40,7 @@ const ITEMS = [
   },
   {
     icon: Users,
-    title: 'Networking',
+    title: 'Networking Events',
     text: 'Connect with like-minded people.',
     description: 'Networking helps students connect with developers, founders, entrepreneurs, mentors and like-minded individuals.',
     activities: ['Networking meetups.', 'Founder interactions.', 'Student networking sessions.', 'Community collaborations.', 'Professional introductions.', 'Mentorship connections.'],
@@ -48,6 +48,17 @@ const ITEMS = [
     benefits: ['Build meaningful connections.', 'Discover opportunities.', 'Improve communication skills.', 'Find collaborators.', 'Grow professional relationships.'],
     whyItMatters: 'Strong communities create access to knowledge, teams and opportunities that students often cannot find by working alone.',
     involvement: 'Participate in SYNTAXO discussions, attend community meetups, introduce yourself and collaborate on student-led projects.',
+  },
+  {
+    icon: Mic,
+    title: 'Expert Sessions',
+    text: 'Learn directly from people in the field.',
+    description: 'Expert sessions bring experienced technologists, founders and practitioners together with the community to share knowledge and answer questions.',
+    activities: ['Guest talks and Q&A.', 'Career and technology panels.', 'Founder and practitioner conversations.', 'Live demonstrations.', 'Community-led discussions.'],
+    examples: ['Explore current industry practices.', 'Ask questions about technology careers.', 'Learn how products and teams work.', 'Hear practical lessons from experienced speakers.'],
+    benefits: ['Learn from real-world experience.', 'Get practical perspectives.', 'Ask questions and exchange ideas.', 'Build connections with speakers.'],
+    whyItMatters: 'Direct conversations with practitioners help learners connect technical topics to the work and decisions behind them.',
+    involvement: 'Join SYNTAXO announcements, suggest a topic or speaker, and take part in upcoming community sessions.',
   },
   {
     icon: Mic,
@@ -62,7 +73,7 @@ const ITEMS = [
   },
   {
     icon: Rocket,
-    title: 'Startup Collaborations',
+    title: 'Startup Activities',
     text: 'Turn ideas into opportunities.',
     description: 'An initiative that connects aspiring entrepreneurs, student innovators, startup founders and developers to transform ideas into meaningful solutions.',
     activities: ['Startup networking.', 'Idea validation sessions.', 'Team formation.', 'Product development collaborations.', 'Startup pitching sessions.', 'Mentorship opportunities.', 'Innovation challenges.'],
@@ -71,6 +82,28 @@ const ITEMS = [
     whyItMatters: 'Startup collaboration gives students a practical way to learn how ideas become products, teams and sustainable solutions.',
     involvement: 'Share your idea or skills with the SYNTAXO community, find compatible collaborators and participate in community innovation sessions.',
   },
+  {
+    icon: Lightbulb,
+    title: 'Learning Opportunities',
+    text: 'Keep learning with the community.',
+    description: 'SYNTAXO creates opportunities for members to learn through shared resources, guided practice, peer support and real projects.',
+    activities: ['Peer learning groups.', 'Project-based learning.', 'Guided practice sessions.', 'Knowledge-sharing discussions.', 'Learning resource recommendations.'],
+    examples: ['Learn a new tool with peers.', 'Build a portfolio project.', 'Share knowledge with other members.', 'Practice skills through community activities.'],
+    benefits: ['Build practical skills.', 'Learn at a collaborative pace.', 'Practice with peer support.', 'Discover new areas of interest.'],
+    whyItMatters: 'A supportive learning community makes it easier to stay curious, practice consistently and learn from other perspectives.',
+    involvement: 'Share what you want to learn, join a learning activity and contribute resources or experience to the community.',
+  },
+  {
+    icon: Handshake,
+    title: 'Collaborations',
+    text: 'Create more together.',
+    description: 'Community collaborations connect people and groups to exchange ideas, build projects and create shared experiences.',
+    activities: ['Community partnerships.', 'Cross-community events.', 'Student project collaborations.', 'Knowledge sharing.', 'Joint innovation activities.'],
+    examples: ['Work with another technology community.', 'Form a cross-discipline project team.', 'Co-host a learning event.', 'Share opportunities with members.'],
+    benefits: ['Meet new collaborators.', 'Bring different perspectives together.', 'Create shared opportunities.', 'Build stronger community connections.'],
+    whyItMatters: 'Collaboration helps communities combine their strengths and create experiences that are more valuable together.',
+    involvement: 'Reach out to SYNTAXO with a collaboration idea, community introduction or opportunity to share.',
+  },
 ]
 
 export default function WhatWeDo() {
@@ -78,9 +111,9 @@ export default function WhatWeDo() {
   const closeModal = useCallback(() => setActiveInitiative(null), [])
 
   return (
-    <section id="initiatives" className="border-t border-line py-24 sm:py-32">
+    <section id="what-we-do" className="border-t border-line py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Initiatives" title="What We Do" />
+        <SectionHeading eyebrow="Explore SYNTAXO" title="What We Do" />
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {ITEMS.map(({ icon: Icon, title, text }, i) => (

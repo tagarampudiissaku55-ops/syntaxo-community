@@ -10,7 +10,7 @@ export const SITE = {
 }
 
 export const LINKS = {
-  join: 'https://whatsapp.com/channel/0029Vb9IQpjF6smqKKg4x02s',
+  join: 'https://whatsapp.com/channel/0029VbDMgyN7dmeZnWSJBp3E',
   linkedin: 'https://www.linkedin.com/in/tagarampudi-issaku-7017a3374/',
   github: 'https://github.com/tagarampudiissaku55-ops',
   communityLinkedin: 'https://www.linkedin.com/company/syntaxo-community/',
@@ -55,6 +55,12 @@ export const TEAM = [
     role: 'Tech Team',
     linkedin: 'https://www.linkedin.com/in/varshini-chada-799913372/',
     image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1793864157/IMG_20260819_151003_-_Varshini_Chada_wmlvhi.jpg',
+  },
+  {
+    name: 'Dintakurthi Seshu Kumar',
+    role: 'Tech Team',
+    linkedin: 'https://www.linkedin.com/in/dintakurthi-seshu-kumar-549575371/',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795168795/passport_size_photo_qqfhpn.png',
   },
 ]
 
@@ -132,13 +138,35 @@ export const COORDINATORS = [
     image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1793867974/WhatsApp_Image_2026-11-05_at_2.06.15_PM_wn8czg.jpg',
   },
   {
-    name: 'B Phanendra Kumar',
-    role: 'Event Coordinator',
+    name: 'Uppu Rishi Kumar',
+    role: 'Content Creation',
+    linkedin: 'https://www.linkedin.com/in/rishikumaruppu?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795169166/WhatsApp_Image_2026-11-20_at_3.16.11_PM_utvhla.jpg',
+  },
+  {
+    name: 'Boddapu Gnandeep',
+    role: 'Content Creator',
+    linkedin: 'https://www.linkedin.com/in/gnandeep-boddapu-964b01434?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795170283/WhatsApp_Image_2026-11-20_at_3.53.54_PM_lsphbf.jpg',
+  },
+  {
+    name: 'Yellapu Venkata Srinivas',
+    role: 'Content Creator',
+    linkedin: 'https://www.linkedin.com/in/yellapu-srinivas-65b929419?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795170555/WhatsApp_Image_2026-11-20_at_3.58.29_PM_nptwk1.jpg',
   },
   {
     name: 'K. Sai Trivek',
     role: 'Event Coordinator',
     image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1793869371/WhatsApp_Image_2026-11-05_at_2.31.22_PM_gsvvll.jpg',
+  },
+]
+
+export const MEDICAL_TEAM = [
+  {
+    name: 'Pedapudi Meenakshi',
+    role: 'Medical Team',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795171809/WhatsApp_Image_2026-11-20_at_4.19.25_PM_gsz5zd.jpg',
   },
 ]
 

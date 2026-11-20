@@ -1,5 +1,5 @@
 import { ArrowUpRight, GitBranch, Globe2, Handshake, Lightbulb, Mail, Network } from 'lucide-react'
-import { COORDINATORS, LINKS, SITE, TEAM } from '../config'
+import { COORDINATORS, LINKS, MEDICAL_TEAM, SITE, TEAM } from '../config'
 import Reveal from './Reveal'
 
 function initials(name) {
@@ -148,6 +148,14 @@ export default function Founder() {
             {TEAM.map((member, index) => (
               <MemberCard key={member.name} member={member} delay={(index % 3) * 0.06} />
             ))}
+          </div>
+          <div className="mt-12">
+            <h3 className="text-xl font-medium tracking-tight">Medical Team</h3>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {MEDICAL_TEAM.map((member, index) => (
+                <MemberCard key={member.name} member={member} delay={(index % 3) * 0.05} />
+              ))}
+            </div>
           </div>
         </Reveal>
 

@@ -81,31 +81,38 @@ export default function Navbar() {
         {open && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-x-0 top-16 bottom-0 bg-black md:hidden"
+            className="absolute inset-x-0 top-full h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-black md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ul className="mx-auto flex max-w-6xl flex-col px-5 pt-6 sm:px-8">
-              {NAV_ITEMS.map(({ label, path }) => (
-                <li key={path} className="border-b border-line">
-                  <NavLink
-                    to={path}
-                    end={path === '/'}
-                    onClick={close}
-                    className={({ isActive }) => `block py-5 text-2xl font-medium tracking-tight ${isActive ? 'text-white' : 'text-muted'}`}
-                  >
-                    {label}
-                  </NavLink>
+            <div className="mx-auto max-w-6xl px-5 pt-4 sm:px-8">
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.25em] text-faint">Explore sections</p>
+              <ul className="flex flex-col gap-1.5">
+                {NAV_ITEMS.map(({ label, path }) => (
+                  <li key={path}>
+                    <NavLink
+                      to={path}
+                      end={path === '/'}
+                      onClick={close}
+                      className={({ isActive }) => `flex min-h-10 items-center rounded-lg border px-3 py-2 text-base font-medium tracking-tight transition-colors ${
+                        isActive
+                          ? 'border-white/30 bg-white/[0.08] text-white'
+                          : 'border-line bg-white/[0.02] text-muted hover:border-line-strong hover:bg-white/[0.05] hover:text-white'
+                      }`}
+                    >
+                      {label}
+                    </NavLink>
+                  </li>
+                ))}
+                <li className="pt-2">
+                  <Button href={LINKS.join} external className="w-full" onClick={close}>
+                    Join Community
+                  </Button>
                 </li>
-              ))}
-              <li className="pt-8">
-                <Button href={LINKS.join} external className="w-full" onClick={close}>
-                  Join Community
-                </Button>
-              </li>
-            </ul>
+              </ul>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

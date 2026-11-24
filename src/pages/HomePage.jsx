@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import HomeFocus from '../components/HomeFocus'
 import Location from '../components/Location'
 import JoinCTA from '../components/JoinCTA'
+import CommunityEvents from '../components/CommunityEvents'
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <About />
       <HomeFocus />
       <Location />
+      <CommunityEvents />
       <JoinCTA />
     </>
   )

@@ -9,6 +9,7 @@ import WhatWeDoPage from './pages/WhatWeDoPage'
 import EventsPage from './pages/EventsPage'
 import TeamPage from './pages/TeamPage'
 import ContactPage from './pages/ContactPage'
+import EventDetailPage from './pages/EventDetailPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -47,6 +48,7 @@ function SiteLayout() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/what-we-do" element={<WhatWeDoPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:eventSlug" element={<EventDetailPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />

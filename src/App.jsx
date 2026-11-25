@@ -10,6 +10,7 @@ import EventsPage from './pages/EventsPage'
 import TeamPage from './pages/TeamPage'
 import ContactPage from './pages/ContactPage'
 import EventDetailPage from './pages/EventDetailPage'
+import ExperienceHub from './components/ExperienceHub'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -55,6 +56,7 @@ function SiteLayout() {
         </Routes>
       </main>
       <Footer />
+      <ExperienceHub />
     </>
   )
 }

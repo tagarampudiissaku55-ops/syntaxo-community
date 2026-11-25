@@ -173,6 +173,11 @@ export const MEDICAL_TEAM = [
     role: 'Medical Team',
     image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795179212/WhatsApp_Image_2026-11-20_at_4.45.25_PM_hj5fvn.jpg',
   },
+  {
+    name: 'Madam Anusha',
+    role: 'Medical Team',
+    image: 'https://res.cloudinary.com/dwz9z3dmp/image/upload/v1795601006/WhatsApp_Image_2026-11-25_at_11.53.50_AM_fe21wi.jpg',
+  },
 ]
 
 export const NAV_ITEMS = [

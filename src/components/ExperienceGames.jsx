@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Brain,
-  Check,
   ChevronLeft,
   CircleHelp,
   Code2,
@@ -10,9 +9,11 @@ import {
   Trophy,
   Zap,
 } from 'lucide-react'
+import QuizArena from './QuizArena'
+import { useTranslation } from 'react-i18next'
 
 const GAME_OPTIONS = [
-  { id: 'quiz', title: 'Tech Quiz', description: 'Five quick questions. Beat the clock and test your dev knowledge.', icon: CircleHelp },
+  { id: 'quiz', title: 'SYNTAXO Quiz Arena', description: 'Premium category quizzes, timed rounds, results and shareable achievements.', icon: CircleHelp },
   { id: 'memory', title: 'Memory Match', description: 'Pair six familiar technologies using as few moves as you can.', icon: Brain },
   { id: 'code', title: 'Code Sprint', description: 'Type a short snippet accurately and see your speed stats.', icon: Code2 },
 ]
@@ -22,19 +23,6 @@ const ACHIEVEMENT_LABELS = {
   memoryMaster: 'Memory Master',
   codeSprinter: 'Code Sprinter',
 }
-
-const QUESTIONS = [
-  { question: 'Which language runs natively in web browsers?', options: ['JavaScript', 'Python', 'Rust', 'Go'], answer: 'JavaScript' },
-  { question: 'What does CSS primarily describe?', options: ['Page presentation', 'Database schemas', 'Network routing', 'Version history'], answer: 'Page presentation' },
-  { question: 'Which Git command creates a new local repository?', options: ['git init', 'git push', 'git merge', 'git fetch'], answer: 'git init' },
-  { question: 'What does API stand for?', options: ['Application Programming Interface', 'Automated Program Instance', 'Applied Protocol Integration', 'Application Process Index'], answer: 'Application Programming Interface' },
-  { question: 'Which data format is commonly used for web APIs?', options: ['JSON', 'MP3', 'PSD', 'WAV'], answer: 'JSON' },
-  { question: 'What is the main purpose of React?', options: ['Build user interfaces', 'Manage operating systems', 'Query relational databases', 'Compile machine code'], answer: 'Build user interfaces' },
-  { question: 'Which symbol starts a single-line comment in JavaScript?', options: ['//', '<!--', '#', '**'], answer: '//' },
-  { question: 'What does HTML stand for?', options: ['HyperText Markup Language', 'High Transfer Machine Link', 'Hyperlink Text Management Logic', 'Home Tool Markup Language'], answer: 'HyperText Markup Language' },
-  { question: 'Which structure follows last-in, first-out order?', options: ['Stack', 'Queue', 'Tree', 'Graph'], answer: 'Stack' },
-  { question: 'What does the Python expression len([4, 8, 12]) return?', options: ['3', '24', '12', '4'], answer: '3' },
-]
 
 const TECHNOLOGIES = [
   { name: 'HTML', symbol: '5' },
@@ -104,100 +92,6 @@ function GameResult({ title, score, summary, onReplay, onBack }) {
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         <button type="button" className="sx-primary-button" onClick={onReplay}><RotateCcw size={14} aria-hidden="true" /> Play again</button>
         <button type="button" className="sx-secondary-button" onClick={onBack}><ChevronLeft size={14} aria-hidden="true" /> All games</button>
-      </div>
-    </div>
-  )
-}
-
-function TechQuiz({ onComplete, onSound, onReplay, onBack }) {
-  const questions = useMemo(() => shuffle(QUESTIONS).slice(0, 5), [])
-  const [questionIndex, setQuestionIndex] = useState(0)
-  const [correct, setCorrect] = useState(0)
-  const [secondsLeft, setSecondsLeft] = useState(45)
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [locked, setLocked] = useState(false)
-  const [finished, setFinished] = useState(false)
-  const transitionRef = useRef(null)
-  const reportedRef = useRef(false)
-
-  useEffect(() => {
-    if (finished || secondsLeft <= 0) return undefined
-    const timeout = window.setTimeout(() => setSecondsLeft((current) => current - 1), 1000)
-    return () => window.clearTimeout(timeout)
-  }, [finished, secondsLeft])
-
-  useEffect(() => {
-    if (secondsLeft === 0) setFinished(true)
-  }, [secondsLeft])
-
-  useEffect(() => () => window.clearTimeout(transitionRef.current), [])
-
-  useEffect(() => {
-    if (!finished || reportedRef.current) return
-    reportedRef.current = true
-    const score = Math.round((correct / questions.length) * 100)
-    onComplete({ id: 'quiz', score, detail: { correct, total: questions.length } })
-  }, [finished, correct, onComplete, questions.length])
-
-  function answerQuestion(option) {
-    if (locked || finished) return
-    const question = questions[questionIndex]
-    const isCorrect = option === question.answer
-    setSelectedAnswer(option)
-    setLocked(true)
-    if (isCorrect) setCorrect((current) => current + 1)
-    onSound()
-    transitionRef.current = window.setTimeout(() => {
-      if (questionIndex === questions.length - 1) {
-        setFinished(true)
-      } else {
-        setQuestionIndex((current) => current + 1)
-        setSelectedAnswer(null)
-        setLocked(false)
-      }
-    }, 420)
-  }
-
-  if (finished) {
-    const score = Math.round((correct / questions.length) * 100)
-    return (
-      <GameResult
-        title="Tech Quiz"
-        score={score}
-        summary={`${correct} of ${questions.length} correct · ${secondsLeft}s remaining`}
-        onReplay={onReplay}
-        onBack={onBack}
-      />
-    )
-  }
-
-  const question = questions[questionIndex]
-  return (
-    <div className="sx-game-content">
-      <div className="flex items-center justify-between text-xs text-zinc-500">
-        <span>QUESTION {questionIndex + 1} / {questions.length}</span>
-        <span className={secondsLeft <= 10 ? 'sx-time-critical' : ''}><Zap size={13} aria-hidden="true" /> {secondsLeft}s</span>
-      </div>
-      <div className="sx-question-progress"><span style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} /></div>
-      <h3 className="mt-5 text-lg font-medium leading-snug text-white">{question.question}</h3>
-      <div className="mt-4 grid gap-2">
-        {question.options.map((option) => {
-          const isSelected = selectedAnswer === option
-          const isCorrect = option === question.answer
-          const stateClass = isSelected ? (isCorrect ? ' is-correct' : ' is-wrong') : (locked && isCorrect ? ' is-correct' : '')
-          return (
-            <button
-              type="button"
-              key={option}
-              className={`sx-answer-option${stateClass}`}
-              onClick={() => answerQuestion(option)}
-              disabled={locked}
-            >
-              <span>{option}</span>
-              {isSelected && isCorrect && <Check size={15} aria-hidden="true" />}
-            </button>
-          )
-        })}
       </div>
     </div>
   )
@@ -409,6 +303,7 @@ function CodeSprint({ onComplete, onSound, onReplay, onBack }) {
 }
 
 export default function ExperienceGames({ progress, onComplete, onReset, onSound }) {
+  const { t } = useTranslation()
   const [selectedGame, setSelectedGame] = useState(null)
   const [round, setRound] = useState(0)
 
@@ -434,8 +329,8 @@ export default function ExperienceGames({ progress, onComplete, onReset, onSound
               >
                 <span className="sx-game-launch-icon"><Icon size={18} aria-hidden="true" /></span>
                 <span className="min-w-0 flex-1 text-left">
-                  <strong>{title}</strong>
-                  <small>{description}</small>
+                  <strong>{id === 'quiz' ? t('games.arena') : id === 'memory' ? t('games.memory') : t('games.code')}</strong>
+                  <small>{id === 'quiz' ? t('games.arenaDesc') : id === 'memory' ? t('games.memoryDesc') : t('games.codeDesc')}</small>
                 </span>
                 <span className="sx-game-chevron" aria-hidden="true">→</span>
               </button>
@@ -448,7 +343,15 @@ export default function ExperienceGames({ progress, onComplete, onReset, onSound
           <button type="button" className="sx-back-to-games" onClick={() => setSelectedGame(null)}>
             <ChevronLeft size={14} aria-hidden="true" /> All games
           </button>
-          {selectedGame === 'quiz' && <TechQuiz key={`quiz-${round}`} {...gameProps} />}
+          {selectedGame === 'quiz' && (
+            <QuizArena
+              key={`quiz-${round}`}
+              onComplete={onComplete}
+              onSound={onSound}
+              onBack={() => setSelectedGame(null)}
+              soundEnabled={false}
+            />
+          )}
           {selectedGame === 'memory' && <MemoryMatch key={`memory-${round}`} {...gameProps} />}
           {selectedGame === 'code' && <CodeSprint key={`code-${round}`} {...gameProps} />}
         </>

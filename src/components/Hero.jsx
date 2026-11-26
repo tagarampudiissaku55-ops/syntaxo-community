@@ -2,8 +2,10 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-moti
 import { LINKS } from '../config'
 import Button from './Button'
 import HomeHeroEffects from './HomeHeroEffects'
+import { useTranslation } from 'react-i18next'
 
 export default function Hero() {
+  const { t } = useTranslation()
   const reduce = useReducedMotion()
   const pointerX = useMotionValue(-400)
   const pointerY = useMotionValue(-400)
@@ -46,7 +48,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
         <motion.p {...fade(0.05)} className="mb-7 text-xs font-medium uppercase tracking-[0.35em] text-faint">
-          Welcome to SYNTAXO
+          {t('hero.welcome')}
         </motion.p>
 
         <motion.h1
@@ -55,24 +57,24 @@ export default function Hero() {
         >
           SYNTAXO
           <br />
-          <span className="text-muted">Where Technology Minds Connect, Collaborate &amp; Grow.</span>
+          <span className="text-muted">{t('hero.title')}</span>
         </motion.h1>
 
         <motion.p {...fade(0.3)} className="mt-8 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-          A growing technology community bringing together students, developers, innovators, and tech enthusiasts to connect, learn, collaborate, and create opportunities.
+          {t('hero.description')}
         </motion.p>
 
         <motion.div {...fade(0.45)} className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Button href={LINKS.join} external icon>
-            Join Community
+            {t('hero.join')}
           </Button>
           <Button href="/about" variant="outline">
-            Explore Syntaxo
+            {t('hero.explore')}
           </Button>
         </motion.div>
 
         <motion.p {...fade(0.6)} className="mt-16 text-[11px] uppercase tracking-[0.35em] text-faint">
-          Connect. Collaborate. Grow.
+          {t('hero.tagline')}
         </motion.p>
       </div>
     </section>

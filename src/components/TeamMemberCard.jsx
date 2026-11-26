@@ -1,11 +1,18 @@
 import { Globe2 } from 'lucide-react'
 import Reveal from './Reveal'
+import { useTranslation } from 'react-i18next'
 
 function initials(name) {
   return name.split(' ').map((part) => part[0]).filter(Boolean).slice(0, 2).join('').toUpperCase()
 }
 
 export default function TeamMemberCard({ member, delay = 0 }) {
+  const { t } = useTranslation()
+  const role = ({
+    'Co-lead': t('team.coLead'), 'Operations Lead': t('team.operations'), 'Tech Lead': t('team.tech'),
+    'Digital Lead': t('team.digital'), 'Tech Team': t('team.techTeam'), 'Event Coordinator': t('team.event'),
+    'Community Coordinator': t('team.community'), 'Content Creation': t('team.content'),
+  }[member.role] || member.role)
   const Card = member.linkedin ? 'a' : 'div'
   const linkProps = member.linkedin
     ? { href: member.linkedin, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${member.name} on LinkedIn` }
@@ -21,7 +28,7 @@ export default function TeamMemberCard({ member, delay = 0 }) {
             {member.image && (
               <img
                 src={member.image}
-                alt={`${member.name}, ${member.role}`}
+                alt={`${member.name}, ${role}`}
                 loading="lazy"
                 decoding="async"
                 style={{ objectPosition: member.imagePosition || 'center' }}
@@ -34,7 +41,7 @@ export default function TeamMemberCard({ member, delay = 0 }) {
         </div>
         <div className="mt-8">
           <h3 className="text-base font-medium leading-snug text-white">{member.name}</h3>
-          <p className="mt-2 text-[11px] uppercase tracking-[0.16em] text-zinc-500">{member.role}</p>
+          <p className="mt-2 text-[11px] uppercase tracking-[0.16em] text-zinc-500">{role}</p>
         </div>
       </Card>
     </Reveal>

@@ -13,6 +13,7 @@ import {
 import { Link } from 'react-router-dom'
 import { useReducedMotion } from 'framer-motion'
 import './experience.css'
+import { useTranslation } from 'react-i18next'
 
 const ExperienceGames = lazy(() => import('./ExperienceGames.jsx'))
 const PROGRESS_KEY = 'syntaxo-experience-progress-v1'
@@ -156,9 +157,10 @@ function ExperiencePanelHeader({ icon: Icon, title, onClose, onMinimize, showMin
 }
 
 function SettingsPanel({ settings, onSettingChange, onClose }) {
+  const { t } = useTranslation()
   return (
     <section className="sx-experience-panel sx-settings-panel" aria-label="Experience settings">
-      <ExperiencePanelHeader icon={Settings2} title="Experience settings" onClose={onClose} />
+      <ExperiencePanelHeader icon={Settings2} title={t('games.settings')} onClose={onClose} />
       <div className="sx-settings-options">
         <label className="sx-setting-row">
           <span>
@@ -196,6 +198,7 @@ function SettingsPanel({ settings, onSettingChange, onClose }) {
 }
 
 function ChatPanel({ onClose, onMinimize, onOpenGames, minimized, welcomeIndex }) {
+  const { t } = useTranslation()
   return (
     <section className={`sx-experience-panel sx-chat-panel${minimized ? ' sx-chat-minimized' : ''}`} aria-label="SYNTAXO guide">
       <ExperiencePanelHeader
@@ -227,6 +230,7 @@ function ChatPanel({ onClose, onMinimize, onOpenGames, minimized, welcomeIndex }
 }
 
 export default function ExperienceHub() {
+  const { t } = useTranslation()
   const prefersReducedMotion = useReducedMotion()
   const [progress, setProgress] = useState(readProgress)
   const [settings, setSettings] = useState(readSettings)
@@ -407,7 +411,7 @@ export default function ExperienceHub() {
 
       {settingsEnabled && activePanel === 'games' && (
         <section className="sx-experience-panel sx-games-panel" aria-label="Mini game hub">
-          <ExperiencePanelHeader icon={Gamepad2} title="Mini game hub" onClose={closePanel} />
+          <ExperiencePanelHeader icon={Gamepad2} title={t('games.title')} onClose={closePanel} />
           {rewardMessage && <p className="sx-reward-toast" role="status"><Sparkles size={14} aria-hidden="true" /> {rewardMessage}</p>}
           <Suspense fallback={<div className="sx-games-loading" role="status">Loading games…</div>}>
             <ExperienceGames

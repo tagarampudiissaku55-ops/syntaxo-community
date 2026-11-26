@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { EVENTS } from '../data/events'
 import Button from './Button'
 import Reveal from './Reveal'
+import { useTranslation } from 'react-i18next'
 
 const EVENT_DETAILS = [
   { key: 'date', label: 'Date', Icon: CalendarDays },
@@ -11,6 +12,7 @@ const EVENT_DETAILS = [
 ]
 
 function EventCard({ event }) {
+  const { t } = useTranslation()
   return (
     <Reveal
       as="article"
@@ -57,7 +59,7 @@ function EventCard({ event }) {
               <div key={key} className="flex min-w-0 items-start gap-2.5">
                 <Icon size={16} className="mt-0.5 shrink-0 text-zinc-500" aria-hidden="true" />
                 <div className="min-w-0">
-                  <dt className="text-[10px] font-medium uppercase tracking-[0.16em] text-faint">{label}</dt>
+                  <dt className="text-[10px] font-medium uppercase tracking-[0.16em] text-faint">{t(`events.${key}`)}</dt>
                   <dd className="mt-1 text-sm leading-5 text-zinc-300">{event[key]}</dd>
                 </div>
               </div>
@@ -65,7 +67,7 @@ function EventCard({ event }) {
           </dl>
 
           <Button href={`/events/${event.slug}`} variant="outline" className="mt-6 self-start">
-            View Event
+            {t('events.view')}
           </Button>
         </div>
       </div>
@@ -74,13 +76,14 @@ function EventCard({ event }) {
 }
 
 export default function CommunityEvents() {
+  const { t } = useTranslation()
   return (
     <section id="events" className="relative overflow-hidden border-t border-line py-16 sm:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,107,255,0.07),transparent_55%)]" aria-hidden="true" />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal className="mb-8 max-w-3xl sm:mb-10">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-faint">Events &amp; Collaborations</p>
-          <h2 className="text-3xl font-medium leading-tight tracking-tight sm:text-4xl">Community, in action.</h2>
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-faint">{t('events.eyebrow')}</p>
+          <h2 className="text-3xl font-medium leading-tight tracking-tight sm:text-4xl">{t('events.title')}</h2>
         </Reveal>
 
         <div className="space-y-6">

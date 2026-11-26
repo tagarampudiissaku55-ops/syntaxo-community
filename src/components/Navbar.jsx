@@ -4,8 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Link, NavLink } from 'react-router-dom'
 import { LINKS, NAV_ITEMS } from '../config'
 import Button from './Button'
+import LanguageSelector from './LanguageSelector'
+import { useTranslation } from 'react-i18next'
 
 export default function Navbar() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -52,16 +55,17 @@ export default function Navbar() {
                   isActive ? 'text-white after:w-full' : 'text-muted after:w-0 hover:after:w-full'
                 }`}
               >
-                {label}
+                {t(`nav.${path === '/' ? 'home' : path === '/about' ? 'about' : path === '/what-we-do' ? 'what' : path === '/events' ? 'events' : path === '/team' ? 'team' : 'contact'}`)}
               </NavLink>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-3">
+          <div className="hidden md:block"><LanguageSelector /></div>
           <div className="hidden md:block">
             <Button href={LINKS.join} external className="!px-5 !py-2.5">
-              Join Community
+              {t('nav.join')}
             </Button>
           </div>
           <button
@@ -70,7 +74,7 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -88,7 +92,8 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
           >
             <div className="mx-auto max-w-6xl px-5 pt-4 sm:px-8">
-              <p className="mb-2 text-xs font-medium uppercase tracking-[0.25em] text-faint">Explore sections</p>
+              <div className="mb-3"><LanguageSelector mobile /></div>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.25em] text-faint">{t('nav.explore')}</p>
               <ul className="flex flex-col gap-1.5">
                 {NAV_ITEMS.map(({ label, path }) => (
                   <li key={path}>
@@ -102,13 +107,13 @@ export default function Navbar() {
                           : 'border-line bg-white/[0.02] text-muted hover:border-line-strong hover:bg-white/[0.05] hover:text-white'
                       }`}
                     >
-                      {label}
+                      {t(`nav.${path === '/' ? 'home' : path === '/about' ? 'about' : path === '/what-we-do' ? 'what' : path === '/events' ? 'events' : path === '/team' ? 'team' : 'contact'}`)}
                     </NavLink>
                   </li>
                 ))}
                 <li className="pt-2">
                   <Button href={LINKS.join} external className="w-full" onClick={close}>
-                    Join Community
+                    {t('nav.join')}
                   </Button>
                 </li>
               </ul>

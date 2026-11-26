@@ -82,6 +82,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+:root:lang(hi),
+:root:lang(te) {
+  text-rendering: optimizeLegibility;
+}
+
+:root:lang(hi) body,
+:root:lang(te) body {
+  line-height: 1.65;
+}
+
 ::selection {
   background: #fff;
   color: #000;
